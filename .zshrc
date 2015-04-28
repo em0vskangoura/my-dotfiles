@@ -38,9 +38,6 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -66,9 +63,6 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
@@ -92,10 +86,8 @@ alias portsudp='netstat -atp udp'
 alias magicping='echo "Pinging Googles DNS servers" && ping -c 3 8.8.8.8'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
-# Dirstack ! Remember recent CDed directories
 
+# Dirstack ! Remember recent CDed directories
 DIRSTACKFILE="$HOME/.zshdirs"
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
     dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
@@ -118,3 +110,16 @@ setopt autopushd pushdsilent pushdtohome
 # Enable search by BLOBs
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" history-incremental-pattern-search-forward
+
+
+# $ manp cd
+function manp {
+    local page
+    if (( $# > 0 )); then
+        for page in "$@"; do
+            man -t "$page" | open -f -a preview
+        done
+    else
+        print 'what manual page do you want?' >&2
+    fi
+}
