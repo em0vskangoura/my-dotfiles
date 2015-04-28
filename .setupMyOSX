@@ -7,9 +7,9 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Language, locale and so on settings
-defaults write NSGlobalDomain AppleLanguages -array “en” “el”
-defaults write NSGlobalDomain AppleLocale -string “en_GB@currency=EUR”
-defaults write NSGlobalDomain AppleMeasurementUnits -string “Centimeters”
+defaults write NSGlobalDomain AppleLanguages -array "en" "el"
+defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 echo "Setting up some Finder stuff.."
