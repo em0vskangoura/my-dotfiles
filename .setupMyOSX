@@ -1,0 +1,25 @@
+echo "Setting up auxiliary OS X stuff.."
+
+# Display battery life percentage
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+# Display IP && hostname when clicking the Clock tray icon
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Language, locale and so on settings
+defaults write NSGlobalDomain AppleLanguages -array “en” “el”
+defaults write NSGlobalDomain AppleLocale -string “en_GB@currency=EUR”
+defaults write NSGlobalDomain AppleMeasurementUnits -string “Centimeters”
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+echo "Setting up some Finder stuff.."
+
+# some Finder settings to display hidden files, show fullpath 
+# and file extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+defaults write com.apple.finder AppleShowAllFiles -boolean true
+# restart finder
+killall Finder
+
+echo "All done!"
