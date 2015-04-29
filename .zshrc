@@ -80,14 +80,23 @@ alias tt='tail'
 alias lsd="ls -la"
 alias -g G='| grep --color=auto'
 
-alias portstcp='netstat -atp tcp'
-alias portsudp='netstat -atp udp'
+alias nettcp='netstat -atp tcp'
+alias netudp='netstat -atp udp'
+# display open ports && the header line
+alias openPorts='sudo lsof -i | awk "/LISTEN/ || NR==1" '
+alias flushDNS='dscacheutil -flushcache'
 
 alias magicping='echo "Pinging Googles DNS servers" && ping -c 3 8.8.8.8'
+
+alias cp='cp -iv'
+alias mv='mv -iv'
+
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#
 # Dirstack ! Remember recent CDed directories
+#
 DIRSTACKFILE="$HOME/.zshdirs"
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
     dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
@@ -96,8 +105,14 @@ fi
 chpwd() {
     print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
-
 DIRSTACKSIZE=12
+#
+# Dirstack ! Remember recent CDed directories
+#
+
+# Enable search by BLOBs
+bindkey "^R" history-incremental-pattern-search-backward
+bindkey "^S" history-incremental-pattern-search-forward
 
 setopt autopushd pushdsilent pushdtohome
 
@@ -107,12 +122,9 @@ setopt autopushd pushdsilent pushdtohome
 ### This reverts the +/- operators.
 #setopt pushdminus
 
-# Enable search by BLOBs
-bindkey "^R" history-incremental-pattern-search-backward
-bindkey "^S" history-incremental-pattern-search-forward
 
 
-# $ manp cd
+# opens a man page in Preview app
 function manp {
     local page
     if (( $# > 0 )); then
@@ -122,4 +134,28 @@ function manp {
     else
         print 'what manual page do you want?' >&2
     fi
+}
+
+# extracts some of the most known archives
+
+extract () {
+    if [ -f "$1" ]; then
+        
+        case "$1" in
+            *.rar)      unrar e "$1"    ;;
+            *.tar.bz2)  tar vxjf "$1"   ;;
+            *.tar.gz)   tar vxzf "$1"   ;;
+            *.tar)      tar xvf "$1"    ;;
+            *.tgz)      tar xvzf "$1"   ;;
+            *.zip)      unzip "$1"      ;;           
+            *.gz)       gunzip "$1"     ;;
+            *)
+                echo "$1" " cannot be extracted via extract()"
+            ;;
+        esac
+
+    else
+        echo "$1" " is not a valid file.."
+    fi
+
 }
