@@ -125,7 +125,7 @@ setopt autopushd pushdsilent pushdtohome
 
 
 # opens a man page in Preview app
-function manp {
+function manp() {
     local page
     if (( $# > 0 )); then
         for page in "$@"; do
@@ -138,7 +138,7 @@ function manp {
 
 # extracts some of the most known archives
 
-extract () {
+function extract() {
     if [ -f "$1" ]; then
         
         case "$1" in
@@ -159,3 +159,9 @@ extract () {
     fi
 
 }
+
+# Use Spotlights metadata to search for items
+function magicfind() { mdfind "kMDItemDisplayName == '$@'c"; }
+
+# Google for the given keyword
+function google() { open "http://www.google.com/search?q=$1"; }
