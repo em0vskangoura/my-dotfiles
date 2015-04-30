@@ -12,6 +12,10 @@ defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
+echo "Launching launchctl to build up locate's database.."
+
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+
 echo "Setting up some Finder stuff.."
 
 # some Finder settings to display hidden files, show fullpath 
