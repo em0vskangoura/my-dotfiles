@@ -1,15 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set autochdir
-
+"set autochdir
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim/
 let path='~/.vim/bundle'
 call vundle#begin(path)
-
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
 " My Bundles here:
 "
 " original repos on github
@@ -17,7 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'rizzatti/dash.vim'
 
 " Plugin 'refactor'
-Plugin 'YankRing.vim'
+"Plugin 'YankRing.vim'
 "Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Lokaltog/vim-powerline'
@@ -71,9 +68,7 @@ set shiftround
 set showmatch
 set ignorecase
 set smartcase
-
 set smarttab
-
 set laststatus=2
 set encoding=utf-8
 
@@ -90,12 +85,16 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+" always display current line number + column
+set ruler
+
 if has('autocmd')
     filetype plugin indent on
     autocmd filetype python set expandtab
 endif
 " Toggle relative numbers plugin
 nnoremap <silent><leader>rn :set relativenumber!<cr>
+set rnu!
 
 set t_Co=256
 colorscheme gotham256
@@ -111,28 +110,31 @@ if has("gui_running")
   endif
 endif
 
-set rnu!
 
 if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-set pastetoggle=<F7>
-" if hit enter -> clear search hl results!
-nnoremap <CR> :noh<CR><CR>:<backspace>
-nnoremap ; :
-nnoremap <space> za
-nnoremap <F6> :set hlsearch!<CR>
+" Nerd Tree toggle with f1, f2, f3!
+map <F1> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+
+" Toggle paste nopaste modes
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+set showmode
 
 " numbers vim
 " nnoremap <F2> :GitGutterToggle<CR>
 nnoremap <F4> :NumbersToggle<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
-" Nerd Tree toggle with f1, f2, f3!
-map <F1> :NERDTreeToggle<CR>
-map <F2> :NERDTreeToggle<CR>
-map <F3> :NERDTreeToggle<CR>
+
+" if hit enter -> clear search hl results!
+nnoremap <CR> :noh<CR><CR>:<backspace>
+nnoremap ; :
+nnoremap <space> za
+nnoremap <F6> :set hlsearch!<CR>
 
 set foldmethod=syntax
 set foldlevel=3
@@ -153,7 +155,7 @@ set guioptions-=L  "remove right-hand scroll bar
 
 " Indentation lines
 set ts=4 sw=4 et
-let g:indent_guides_start_level=2
+let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 let g:ctrlp_cmd = 'call CallCtrlP()'
