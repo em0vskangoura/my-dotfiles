@@ -26,4 +26,8 @@ defaults write com.apple.finder AppleShowAllFiles -boolean true
 # restart finder
 killall Finder
 
+# disable pressing a key repeatedly show up similar chars/symbols
+# and instead make it repeat the char as long its pressed down
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
 echo "All done!"
