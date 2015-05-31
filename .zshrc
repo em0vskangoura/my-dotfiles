@@ -91,6 +91,9 @@ alias magicping='echo "Pinging Googles DNS servers" && ping -c 3 8.8.8.8'
 alias cp='cp -iv'
 alias mv='mv -iv'
 
+# run "sublime file" to open file with the sublime GUI editor
+alias sublime="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
+
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
