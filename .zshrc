@@ -163,6 +163,12 @@ function extract() {
 
 }
 
+# mkdir && cd to newly created directory
+function mkcd
+{
+    command mkdir $1 && cd $1
+}
+
 # Use Spotlights metadata to search for items
 function magicfind() { mdfind "kMDItemDisplayName == '$@'c"; }
 
