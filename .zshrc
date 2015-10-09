@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/f1ndm3h/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -94,6 +94,8 @@ alias mv='mv -iv'
 # run "sublime file" to open file with the sublime GUI editor
 alias sublime="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 
+# alias for thefuck app: https://github.com/nvbn/thefuck
+eval "$(thefuck --alias)"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
